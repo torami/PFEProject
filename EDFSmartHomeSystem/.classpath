@@ -4,5 +4,6 @@
 	<classpathentry kind="src" path="srcService"/>
 	<classpathentry kind="src" path="srcManager"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JerseyEmbeded"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

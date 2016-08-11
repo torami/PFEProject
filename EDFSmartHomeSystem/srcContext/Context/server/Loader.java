@@ -10,6 +10,7 @@ import java.util.Properties;
 import javax.xml.bind.DataBindingException;
 import javax.xml.bind.JAXB;
 
+import Context.Model.Handler.UserHandler;
 import Context.exceptions.LoadFileException;
 import Context.exceptions.NoBackupFileException;
 
@@ -70,7 +71,7 @@ public class Loader {
 	public static void loadUsers() throws LoadFileException {
 		try {
 			File fusers = new File(datarep_prefix + users_fname);
-			Server.uh = JAXB.unmarshal(fusers, UserHandler.class);
+			Server.uh =  JAXB.unmarshal(fusers, UserHandler.class);
 			System.out.print(fusers.getAbsolutePath());
 			Server.uh.print();
 		} catch (DataBindingException e) {
