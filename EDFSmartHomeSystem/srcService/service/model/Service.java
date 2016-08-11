@@ -32,10 +32,12 @@ public class Service {
 	public Service() {	}
 	/**
 	 * this is another constructor
-	 * @param username	
-	 * 			the user is username
-	 * @param password
-	 * 			the user is password
+	 * @param subject
+	 * 			the service 's purpose 
+	 * @param state
+	 * 			the state of the service
+	 * @param <list> activity
+	 * 			the list of activity included in the service
 	 * @throws UnsupportedEncodingException
 	 */
 	public Service (final String subject,final boolean state,final List<Activity> activity) throws UnsupportedEncodingException {
