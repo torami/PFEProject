@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Bean JAXB this beans implement the model of user
  * @author J60277
  */
-@XmlRootElement(name = "services")
+@XmlRootElement(name = "service")
 @XmlAccessorType (XmlAccessType.FIELD)
 public class Service {
 	@XmlElement(name = "id")
