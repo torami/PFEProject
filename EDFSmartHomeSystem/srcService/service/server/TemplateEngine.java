@@ -33,7 +33,7 @@ public class TemplateEngine {
 	public static String buildFromFile(final String filepath){
 		try {
 			Properties prop = new Properties();
-			prop.load(new FileInputStream("./conf/server.properties"));
+			prop.load(new FileInputStream("./conf/server.service.properties"));
 			String resdir = prop.getProperty("resources.repository.prefix");
 
 			StringBuilder builder=new StringBuilder();			
