@@ -103,8 +103,6 @@ public class TemplateEngine {
 			User u = Server.uh.getUserFromId(userid);
 			builder.append("<div id='navbar'>")
 				.append("Vous &ecirc;tes connect&eacute; en tant que : ")
-				.append(u.getId())
-				.append("&nbsp;")
 				.append(u.getUsername())
 				.append("&nbsp;&bull;&nbsp;")
 				.append("<a href='/user/logout'>Logout</a>")

@@ -45,9 +45,10 @@ public class UserResource {
 	@Path("/login")
 	@Produces("text/html")
 	@Consumes("application/x-www-form-urlencoded")
-	public String login(@Context HttpServletRequest req, @FormParam("login") String login) {
+	public String login(@Context HttpServletRequest req, @FormParam("login") String login, MultivaluedMap<String, String> formParams) {
 		TemplateEngine.setSession(req.getSession());
-		if(Server.uh.getUserFromLogin(login)!=null){
+		String password = formParams.getFirst("password");
+		if(Server.uh.VerifyloginAndPassword(login, password)==true){
 			HttpSession session = req.getSession();
 			session.setAttribute("userid", User.createUserId(login));
 			System.out.println("USER LOGIN : "+login);
@@ -64,7 +65,7 @@ public class UserResource {
 		String userid = (String) session.getAttribute("userid");
 		System.out.println("USER LOGOUT : "+userid);
 		session.removeAttribute("userid");
-		return TemplateEngine.redirect("/", 2, "Vous avez été déconnecté. Vous allez être redirigé dans 2 secondes.");
+		return TemplateEngine.redirect("/", 2, "you will be disconnected in 2 seconds.");
 	}	
 	
 	@GET

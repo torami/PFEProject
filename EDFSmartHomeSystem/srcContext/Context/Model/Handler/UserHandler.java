@@ -59,6 +59,17 @@ public class UserHandler {
 		}
 		return null;
 	}
+	/**
+	 * Permet de récupérer l'instance d'un utilisateur à partir de son login
+	 * @param userid ID de l'utilisateur &agrave; r&eacute;cup&eacute;rer 
+	 * @return l'utilisateur correspondant
+	 */
+	public User getUserFromLog(final String userlogin) {
+		for(User u : users){
+			if(u.getUsername().equals(userlogin)) return u;
+		}
+		return null;
+	}
 	
 	/**
 	 * Permet de récupérer l'instance d'un utilisateur à partir de son login
@@ -68,6 +79,20 @@ public class UserHandler {
 	public User getUserFromLogin(final String login) {
 		return getUserFromId(User.createUserId(login));
 	}
+	/**
+	 * Verify the correcteness of the login and the password  
+	 * 
+	 * @return boolean
+	 */
+	public boolean VerifyloginAndPassword(final String login,final String password) {
+		User x= getUserFromId(User.createUserId(login));
+		String pass= x.getPassword();
+		if ( x != null && pass.equals(password)){
+			return true;
+		}
+	return false;
+	}
+	
 	/**
 	 * Mise à jour  d'un utilisateur existant.
 	 * @param userid ID de l'utilisateur &agrave; mettre &agrave; jour
