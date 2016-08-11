@@ -7,9 +7,11 @@ import java.util.Map;
 import java.util.Scanner;
 
 
+
 import Context.Model.User;
 import Context.Model.Handler.UserHandler;
 
+import com.sun.grizzly.ControllerStateListener;
 import com.sun.grizzly.http.SelectorThread;
 import com.sun.jersey.api.container.grizzly.GrizzlyWebContainerFactory;
 
@@ -41,7 +43,7 @@ public class Server {
 
 			// on lance le serveur
 			ServerStateListener ssl = new ServerStateListener(); // Creation d'un listener pour suivre l'etat du serveur
-			threadSelector.getController().addStateListener(ssl); // Enregistrement du listener
+			threadSelector.getController().addStateListener((ControllerStateListener) ssl); // Enregistrement du listener
 			threadSelector.getController().start();
 			
 			// Simulation d'un shell pour le controle du serveur
