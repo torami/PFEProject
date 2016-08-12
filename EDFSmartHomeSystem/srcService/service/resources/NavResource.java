@@ -18,14 +18,15 @@ public class NavResource {
 		HttpSession session = req.getSession();
 		TemplateEngine.setSession(req.getSession());
 		
-		if(session.getAttribute("serviceid")!=null){
-			String serviceid = (String) session.getAttribute("serviceid");
-			System.out.println("Vous etes identifiee en tant que :"+serviceid);
+		if(session.getAttribute("serverid")!=null){
+			String serverid = (String) session.getAttribute("serverid");
+			System.out.println("Vous etes identifiee en tant que :"+serverid);
 			return TemplateEngine.buildFromFile("home.html");
 		}else{
 			return TemplateEngine.buildFromFile("login.html");
 		}
 	}
+	
 	
 	@GET
 	@Path("/{filename}")
@@ -40,9 +41,5 @@ public class NavResource {
 		TemplateEngine.setSession(req.getSession());
 		return TemplateEngine.buildFromFile("login.html");
 	}
-	
-
-
-
-	
+		
 }
