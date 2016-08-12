@@ -24,8 +24,6 @@ public class ServiceResource {
 		return u;
 	}
 
-
-
 	
 	@GET
 	@Path("/logout")
