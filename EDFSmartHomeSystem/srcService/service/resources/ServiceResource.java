@@ -44,7 +44,7 @@ public class ServiceResource {
 	@Path("/login")
 	@Produces("text/html")
 	@Consumes("application/x-www-form-urlencoded")
-	public String login(@Context HttpServletRequest req, @FormParam("service") String service) {
+	public String login(@Context HttpServletRequest req, @FormParam("ser vice") String service) {
 		TemplateEngine.setSession(req.getSession());
 		if(Server.serh.getServiceFromId(service)!=null){
 			HttpSession session = req.getSession();
