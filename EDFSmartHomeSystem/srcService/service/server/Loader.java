@@ -31,7 +31,7 @@ public class Loader {
 	static {
 		Properties prop = new Properties();
 		try {
-			prop.load(new FileInputStream("./conf/server.properties"));
+			prop.load(new FileInputStream("./conf/server.service.properties"));
 			services_fname = prop.getProperty("services.filename");
 			backup_suffix = prop.getProperty("backup.suffix");
 			datarep_prefix = prop.getProperty("data.repository.prefix");

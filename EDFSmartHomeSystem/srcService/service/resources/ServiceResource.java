@@ -19,7 +19,7 @@ public class ServiceResource {
 	@GET
 	@Path("/id/{serviceid}")
 	@Produces("text/xml")
-	public Service getUserFromId(@PathParam("serviceid") String serviceid) {
+	public Service getServiceFromId(@PathParam("serviceid") String serviceid) {
 		Service u = Server.serh.getServiceFromId(serviceid);
 		return u;
 	}
@@ -31,9 +31,9 @@ public class ServiceResource {
 	public String logout(@Context HttpServletRequest req) {
 		TemplateEngine.setSession(req.getSession());
 		HttpSession session = req.getSession();
-		String userid = (String) session.getAttribute("userid");
-		System.out.println("USER LOGOUT : "+userid);
-		session.removeAttribute("userid");
+		String serviceid = (String) session.getAttribute("serviceid");
+		System.out.println("Service Repo LOGOUT : "+serviceid);
+		session.removeAttribute("serviceid");
 		return TemplateEngine.redirect("/", 2, "you will be disconnected in 2 seconds.");
 	}	
 	

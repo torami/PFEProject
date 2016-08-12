@@ -8,7 +8,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 
-import Context.server.TemplateEngine;
+import service.server.TemplateEngine;
 
 @Path("/")
 public class NavResource {
