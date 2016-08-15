@@ -11,6 +11,7 @@ import javax.xml.bind.DataBindingException;
 import javax.xml.bind.JAXB;
 
 import Context.Model.Handler.ConnectedObjectHandler;
+import Context.Model.Handler.OpeningHandler;
 import Context.Model.Handler.SpaceHandler;
 import Context.Model.Handler.UserHandler;
 import Context.exceptions.LoadFileException;
@@ -27,6 +28,7 @@ import Context.exceptions.NoBackupFileException;
 public class Loader {
 	private static String users_fname;
 	private static String spaces_fname;
+	private static String openings_fname;
 	private static String connectedobjects_fname;
 	private static String backup_suffix;
 	private static String datarep_prefix;
@@ -37,6 +39,7 @@ public class Loader {
 		try {
 			prop.load(new FileInputStream("./conf/server.properties"));
 			users_fname = prop.getProperty("users.filename");
+			openings_fname = prop.getProperty("openings.filename");
 			spaces_fname = prop.getProperty("spaces.filename");
 			connectedobjects_fname = prop.getProperty("connectedobjects.filename");
 			backup_suffix = prop.getProperty("backup.suffix");
@@ -55,6 +58,7 @@ public class Loader {
 			loadUsers();
 			loadSpaces();
 			loadConnectedObjects();
+			loadOpenings();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out
@@ -70,6 +74,7 @@ public class Loader {
 	public static void restore() {
 		try {
 			restoreUsers();
+			restoreOpenings();
 			restoreSpaces();
 			restoreConnectedObjects();
 			load();
@@ -84,6 +89,17 @@ public class Loader {
 			Server.uh =  JAXB.unmarshal(fusers, UserHandler.class);
 			System.out.print(fusers.getAbsolutePath());
 			Server.uh.print();
+		} catch (DataBindingException e) {
+			throw new LoadFileException(
+					"Erreur au chargement du fichier des utilisateurs");
+		}
+	}
+	public static void loadOpenings() throws LoadFileException {
+		try {
+			File fopenings = new File(datarep_prefix + users_fname);
+			Server.open =  JAXB.unmarshal(fopenings, OpeningHandler.class);
+			System.out.print(fopenings.getAbsolutePath());
+			Server.open.print();
 		} catch (DataBindingException e) {
 			throw new LoadFileException(
 					"Erreur au chargement du fichier des utilisateurs");
@@ -120,6 +136,14 @@ public class Loader {
 		else
 			throw new NoBackupFileException(
 					"Aucun fichier de sauvegarde pour n'a été tourvé pour les utilisateurs");
+	}
+	public static void restoreOpenings() throws NoBackupFileException {
+		File fopenings = new File(backuprep_prefix + openings_fname + backup_suffix);
+		if (fopenings.exists())
+			fopenings.renameTo(new File(datarep_prefix + openings_fname));
+		else
+			throw new NoBackupFileException(
+					"Aucun fichier de sauvegarde pour n'a été tourvé pour les ouvrants");
 	}
 	public static void restoreSpaces() throws NoBackupFileException {
 		File fspaces = new File(backuprep_prefix + spaces_fname + backup_suffix);

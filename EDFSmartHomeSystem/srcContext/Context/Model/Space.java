@@ -1,10 +1,14 @@
 package Context.Model;
 
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+
+import service.model.Activity;
 
 
 
@@ -22,6 +26,9 @@ public class Space {
 	private String id;
 	@XmlElement(name = "name")
 	private String name;
+	@XmlElement(name = "opening")
+	private List<Opening> opening = null;
+	
 	/**
 	 * this 's a default empty constructor for JAXB
 	 * @author J60277 
@@ -32,16 +39,24 @@ public class Space {
 	 * @param nom
 	 * @author J60277
 	 */
-	public Space(final String name) {
+	public Space(final String name, final List<Opening> op) {
 		this.id = createSpaceFormName(name);
 		this.name = name;
+		this.opening=op;
 	}
 	/**
 	 * Some Getters & Setters Tools
 	 * @author J60277
 	 */
+	
 	public String getId() {
 		return id;
+	}
+	public List<Opening> getOpening() {
+		return opening;
+	}
+	public void setOpening(List<Opening> opening) {
+		this.opening = opening;
 	}
 	public String getName() {
 		return name;

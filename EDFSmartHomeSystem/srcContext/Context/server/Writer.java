@@ -16,6 +16,7 @@ import javax.xml.bind.JAXB;
 public class Writer {
 	private static String users_fname;
 	private static String spaces_fname;
+	private static String openings_fname;
 	private static String connectedobject_fname;
 	private static String backup_suffix;
 	private static String datarep_prefix;
@@ -26,6 +27,7 @@ public class Writer {
 		try {
 			prop.load(new FileInputStream("./conf/server.properties"));
 			users_fname = prop.getProperty("users.filename");
+			openings_fname = prop.getProperty("openings.filename");
 			spaces_fname = prop.getProperty("spaces.filename");
 			connectedobject_fname = prop.getProperty("connectedobjects.filename");
 			backup_suffix = prop.getProperty("backup.suffix");
@@ -47,10 +49,24 @@ public class Writer {
 	 */
 	public static void serialize() throws IOException {
 	serializeUsers();
+	serializeOpenings();
 	serializeSpaces();
 	serializeConnectedObject();
 	}
-	
+	public static void serializeOpenings() {
+		File fopenings = new File(datarep_prefix + openings_fname);
+		// On cree une copie de sauvegarde des fichiers precedents en cas de probleme 
+		fopenings.renameTo(new File(backuprep_prefix + openings_fname+backup_suffix));
+		try {
+			fopenings.createNewFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		// Serialisation
+		JAXB.marshal(Server.open, fopenings);
+		System.out.print("Opening sérialisées");
+		Server.uh.print();		
+	}
 
 
 	public static void serializeUsers() {

@@ -11,8 +11,10 @@ import java.util.Scanner;
 
 
 
+
 import Context.Model.User;
 import Context.Model.Handler.ConnectedObjectHandler;
+import Context.Model.Handler.OpeningHandler;
 import Context.Model.Handler.SpaceHandler;
 import Context.Model.Handler.UserHandler;
 
@@ -32,6 +34,7 @@ public class Server {
 	 */
 
 	static public UserHandler uh = new UserHandler();
+	static public OpeningHandler open = new OpeningHandler();
 	static public SpaceHandler space = new SpaceHandler();
 	public static ConnectedObjectHandler connected = new ConnectedObjectHandler();;
 

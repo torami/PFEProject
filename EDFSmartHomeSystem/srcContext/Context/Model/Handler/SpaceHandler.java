@@ -7,14 +7,16 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
 import Context.server.Server;
 import Context.server.Writer;
+import Context.Model.Opening;
 import Context.Model.Space;
 
 
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name = "zones")
+@XmlRootElement(name = "spaces")
 public class SpaceHandler {
 	@XmlElement(name = "space", required=true)
 	private static List<Space> spaces = new ArrayList<Space>();
@@ -22,10 +24,10 @@ public class SpaceHandler {
 	 * Constructeur vide pour JAXB
 	 */
 	public SpaceHandler() {	}
-	public void createSpace(String nom){
+	public void createSpace(String nom, List<Opening> op){
 		String spaceid = Space.createSpaceFormName(nom);
 		if(getSpaceFromId(spaceid)==null) {
-			spaces.add(new Space(nom));
+			spaces.add(new Space(nom,op));
 			Writer.serializeSpaces();
 		}
 	}
