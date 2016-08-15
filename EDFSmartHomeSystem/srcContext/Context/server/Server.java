@@ -10,8 +10,10 @@ import java.util.Scanner;
 
 
 
+
 import Context.Model.User;
 import Context.Model.Handler.ConnectedObjectHandler;
+import Context.Model.Handler.SpaceHandler;
 import Context.Model.Handler.UserHandler;
 
 import com.sun.grizzly.ControllerStateListener;
@@ -30,6 +32,7 @@ public class Server {
 	 */
 
 	static public UserHandler uh = new UserHandler();
+	static public SpaceHandler space = new SpaceHandler();
 	public static ConnectedObjectHandler connected = new ConnectedObjectHandler();;
 
 	public static void main(String[] args) {

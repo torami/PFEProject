@@ -11,6 +11,7 @@ import javax.xml.bind.DataBindingException;
 import javax.xml.bind.JAXB;
 
 import Context.Model.Handler.ConnectedObjectHandler;
+import Context.Model.Handler.SpaceHandler;
 import Context.Model.Handler.UserHandler;
 import Context.exceptions.LoadFileException;
 import Context.exceptions.NoBackupFileException;
@@ -25,6 +26,7 @@ import Context.exceptions.NoBackupFileException;
  */
 public class Loader {
 	private static String users_fname;
+	private static String spaces_fname;
 	private static String connectedobjects_fname;
 	private static String backup_suffix;
 	private static String datarep_prefix;
@@ -35,6 +37,7 @@ public class Loader {
 		try {
 			prop.load(new FileInputStream("./conf/server.properties"));
 			users_fname = prop.getProperty("users.filename");
+			spaces_fname = prop.getProperty("spaces.filename");
 			connectedobjects_fname = prop.getProperty("connectedobjects.filename");
 			backup_suffix = prop.getProperty("backup.suffix");
 			datarep_prefix = prop.getProperty("data.repository.prefix");
@@ -50,6 +53,7 @@ public class Loader {
 	public static void load() {
 		try {
 			loadUsers();
+			loadSpaces();
 			loadConnectedObjects();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -66,6 +70,7 @@ public class Loader {
 	public static void restore() {
 		try {
 			restoreUsers();
+			restoreSpaces();
 			restoreConnectedObjects();
 			load();
 		} catch (NoBackupFileException e) {
@@ -82,6 +87,17 @@ public class Loader {
 		} catch (DataBindingException e) {
 			throw new LoadFileException(
 					"Erreur au chargement du fichier des utilisateurs");
+		}
+	}
+	public static void loadSpaces() throws LoadFileException {
+		try {
+			File fspaces = new File(datarep_prefix + spaces_fname);
+			Server.space =  JAXB.unmarshal(fspaces, SpaceHandler.class);
+			System.out.print(fspaces.getAbsolutePath());
+			Server.space.print();
+		} catch (DataBindingException e) {
+			throw new LoadFileException(
+					"Erreur au chargement du fichier des espaces");
 		}
 	}
 	public static void loadConnectedObjects() throws LoadFileException {
@@ -104,6 +120,14 @@ public class Loader {
 		else
 			throw new NoBackupFileException(
 					"Aucun fichier de sauvegarde pour n'a été tourvé pour les utilisateurs");
+	}
+	public static void restoreSpaces() throws NoBackupFileException {
+		File fspaces = new File(backuprep_prefix + spaces_fname + backup_suffix);
+		if (fspaces.exists())
+			fspaces.renameTo(new File(datarep_prefix + spaces_fname));
+		else
+			throw new NoBackupFileException(
+					"Aucun fichier de sauvegarde pour n'a été tourvé pour les espaces");
 	}
 	public static void restoreConnectedObjects() throws NoBackupFileException {
 		File fconnectedobjects = new File(backuprep_prefix + connectedobjects_fname + backup_suffix);
