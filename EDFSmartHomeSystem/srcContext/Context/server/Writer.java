@@ -15,6 +15,7 @@ import javax.xml.bind.JAXB;
  */
 public class Writer {
 	private static String users_fname;
+	private static String connectedobject_fname;
 	private static String backup_suffix;
 	private static String datarep_prefix;
 	private static String backuprep_prefix;
@@ -24,6 +25,7 @@ public class Writer {
 		try {
 			prop.load(new FileInputStream("./conf/server.properties"));
 			users_fname = prop.getProperty("users.filename");
+			connectedobject_fname = prop.getProperty("connectedobjects.filename");
 			backup_suffix = prop.getProperty("backup.suffix");
 			datarep_prefix = prop.getProperty("data.repository.prefix");
 			backuprep_prefix = prop.getProperty("backup.repository.prefix");
@@ -43,6 +45,7 @@ public class Writer {
 	 */
 	public static void serialize() throws IOException {
 	serializeUsers();
+	serializeConnectedObject();
 	}
 	
 
@@ -58,9 +61,22 @@ public class Writer {
 		}
 		// Serialisation
 		JAXB.marshal(Server.uh, fusers);
-		System.out.print("Utilisateurs sÃ©rialisÃ©s");
+		System.out.print("Utilisateurs sérialisées");
 		Server.uh.print();		
 	}
-	
+	public static void serializeConnectedObject() {
+		File fconnectedobjects = new File(datarep_prefix + connectedobject_fname);
+		// On cree une copie de sauvegarde des fichiers precedents en cas de probleme 
+		fconnectedobjects.renameTo(new File(backuprep_prefix + connectedobject_fname+backup_suffix));
+		try {
+			fconnectedobjects.createNewFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		// Serialisation
+		JAXB.marshal(Server.uh, fconnectedobjects);
+		System.out.print("Connected Object sérialisés");
+		Server.uh.print();		
+	}
 
 }
