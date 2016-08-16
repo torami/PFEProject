@@ -3,6 +3,11 @@
 <space>
 <id>Salon@Salon</id>
 <name>Salon</name>
-<opening></opening>
+<opening>
+<id>01</id>
+<type>Window</type>
+<etat>closed</etat>
+<emplacement>Salon</emplacement>
+</opening>
 </space>
 </spaces>

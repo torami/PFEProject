@@ -1,5 +1,7 @@
 package Context.resources;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
@@ -14,6 +16,7 @@ import javax.ws.rs.core.MultivaluedMap;
 
 import Context.server.Server;
 import Context.server.TemplateEngine;
+import Context.Model.ConnectedObject;
 import Context.Model.User;
 import Context.Model.Handler.UserHandler;
 
@@ -72,7 +75,27 @@ public class UserResource {
 	public UserHandler getAllUsers() {
 		return Server.uh;
 	}
-
+	@GET
+	@Path("/all/html")
+	@Produces("text/html")
+	public String getAllUserHtml(@Context HttpServletRequest req) {
+		TemplateEngine.setSession(req.getSession());
+		final StringBuilder sb = new StringBuilder();
+		sb.append("<h1>User</h1>\n<table border='1' cellpadding='2' cellspacing='0' style='margin-top:10px'>");
+		sb.append("\n<tr style='font-weight:bold;'><td>ID</td><td>Usernamet</td><td>Password</td></tr>");
+		List<User> blist = Server.uh.getUsers();
+				for (User b : blist) {
+			sb.append("\n<tr><td>")
+			.append(b.getId())
+			.append("</td><td>")
+			.append(b.getUsername())
+			.append("</td><td>")
+			.append(b.getPassword())
+			.append("</td></<tr>");
+		}
+		sb.append("\n</table>");
+		return TemplateEngine.build(sb.toString());
+	}
 	
 
 }

@@ -46,6 +46,13 @@ public class NavResource {
 		TemplateEngine.setSession(req.getSession());
 		return TemplateEngine.buildFromFile("login.html");
 	}
+	@GET
+	@Produces("text/html")
+	@Path("/form/user/add")
+	public String getUserForm(@Context HttpServletRequest req) {
+		TemplateEngine.setSession(req.getSession());
+		return TemplateEngine.buildFromFile("adduser.html");
+	}
 	
 
 
