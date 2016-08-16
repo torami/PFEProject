@@ -22,7 +22,7 @@ public class OpeningHandler {
 	public void createOpening(final String type,final String etat,final String emplacement) {
 		if(getOpeningFromId(Opening.createIssueId(type,emplacement)) == null) {
 			openings.add(new Opening(type,etat,emplacement));
-			Writer.serializeIssues();
+			Writer.serializeOpenings();
 		}
 	}
 	public List<Opening> getOpenings() {
@@ -34,28 +34,15 @@ public class OpeningHandler {
 		}
 		return null;
 	}
-	public Issue getIssueFromNom(String issuenom) {
-		for(Issue t : issues){
+	public Opening getIssueFromNom(String issuenom) {
+		for(Opening t : openings){
 			if(t.getEmplacement().equals(issuenom)) return t;
 		}
 		return null;
 	}
-	public void updateIssueFromId(final String oldissueid, final String newissuefinal, String type,final String etat,final String emplacement){
-		Issue t = getIssueFromId(oldissueid);
-		t.setEmplacement(emplacement);
-		t.setEtat(etat);
-		t.setType(type);
-		Server.tgh.updateTaggingsWithIssueId(oldissueid, t.getId());
-		Writer.serializeIssues();
-	}
-	
-	public void removeIssue(String issueid){
-		Server.tgh.removeTaggingsZoneWithIssueId(issueid);
-		issues.remove(getIssueFromId(issueid));
-		Writer.serializeIssues();
-	}
+
 	public void print(){
-		System.out.print("=> "+issues.size()+" elements chargés \n");
+		System.out.print("=> "+openings.size()+" elements chargés \n");
 	}
 
 }

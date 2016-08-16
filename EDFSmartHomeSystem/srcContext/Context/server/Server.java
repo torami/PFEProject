@@ -36,7 +36,7 @@ public class Server {
 	static public UserHandler uh = new UserHandler();
 	static public OpeningHandler open = new OpeningHandler();
 	static public SpaceHandler space = new SpaceHandler();
-	public static ConnectedObjectHandler connected = new ConnectedObjectHandler();;
+	public static ConnectedObjectHandler connected = new ConnectedObjectHandler();
 
 	public static void main(String[] args) {
 		Loader.load(); // Chargement des fichiers XML

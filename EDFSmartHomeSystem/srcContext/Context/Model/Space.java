@@ -19,7 +19,7 @@ import service.model.Activity;
  */
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "space", propOrder = { "id", "name"})
+@XmlType(name = "space", propOrder = { "id", "name","opening"})
 @XmlRootElement(name = "space")
 public class Space {
 	@XmlElement(name = "id")
@@ -39,10 +39,9 @@ public class Space {
 	 * @param nom
 	 * @author J60277
 	 */
-	public Space(final String name, final List<Opening> op) {
+	public Space(final String name) {
 		this.id = createSpaceFormName(name);
 		this.name = name;
-		this.opening=op;
 	}
 	/**
 	 * Some Getters & Setters Tools

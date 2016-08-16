@@ -96,7 +96,7 @@ public class Loader {
 	}
 	public static void loadOpenings() throws LoadFileException {
 		try {
-			File fopenings = new File(datarep_prefix + users_fname);
+			File fopenings = new File(datarep_prefix + openings_fname);
 			Server.open =  JAXB.unmarshal(fopenings, OpeningHandler.class);
 			System.out.print(fopenings.getAbsolutePath());
 			Server.open.print();

@@ -24,10 +24,10 @@ public class SpaceHandler {
 	 * Constructeur vide pour JAXB
 	 */
 	public SpaceHandler() {	}
-	public void createSpace(String nom, List<Opening> op){
+	public void createSpace(String nom){
 		String spaceid = Space.createSpaceFormName(nom);
 		if(getSpaceFromId(spaceid)==null) {
-			spaces.add(new Space(nom,op));
+			spaces.add(new Space(nom));
 			Writer.serializeSpaces();
 		}
 	}
