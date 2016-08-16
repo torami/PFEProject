@@ -32,7 +32,13 @@ public class NavResource {
 	public String getFile(@PathParam("filename") String filename) {
 		return TemplateEngine.getFile(filename);
 	}
-	
+	@GET
+	@Produces("text/html")
+	@Path("/form/connectedobject/add")
+	public String getConnectedObjectForm(@Context HttpServletRequest req) {
+		TemplateEngine.setSession(req.getSession());
+		return TemplateEngine.buildFromFile("addconnectedobject.html");
+	}
 	@GET
 	@Produces("text/html")
 	@Path("/form/login")

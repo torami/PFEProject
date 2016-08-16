@@ -8,12 +8,20 @@ import java.util.Scanner;
 
 
 
+
+
+
+
 import Context.Model.User;
+import Context.Model.Handler.ConnectedObjectHandler;
+import Context.Model.Handler.OpeningHandler;
+import Context.Model.Handler.SpaceHandler;
 import Context.Model.Handler.UserHandler;
 
 import com.sun.grizzly.ControllerStateListener;
 import com.sun.grizzly.http.SelectorThread;
 import com.sun.jersey.api.container.grizzly.GrizzlyWebContainerFactory;
+
 
 /**
  * Classe principale. C'est la classe qui integre et qui lance le serveur Grizzly.
@@ -26,6 +34,9 @@ public class Server {
 	 */
 
 	static public UserHandler uh = new UserHandler();
+	static public OpeningHandler open = new OpeningHandler();
+	static public SpaceHandler space = new SpaceHandler();
+	public static ConnectedObjectHandler connected = new ConnectedObjectHandler();
 
 	public static void main(String[] args) {
 		Loader.load(); // Chargement des fichiers XML

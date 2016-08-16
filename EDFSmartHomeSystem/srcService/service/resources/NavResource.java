@@ -1,5 +1,6 @@
 package service.resources;
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.GET;
@@ -8,7 +9,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 
-import service.server.TemplateEngine;
+import Context.server.TemplateEngine;
 
 @Path("/")
 public class NavResource {
@@ -18,9 +19,10 @@ public class NavResource {
 		HttpSession session = req.getSession();
 		TemplateEngine.setSession(req.getSession());
 		
-		if(session.getAttribute("serverid")!=null){
-			String serverid = (String) session.getAttribute("serverid");
-			System.out.println("Vous etes identifiee en tant que :"+serverid);
+
+		if(session.getAttribute("userid")!=null){
+			String userid = (String) session.getAttribute("userid");
+			System.out.println("Vous etes identifiee en tant que :"+userid);
 			return TemplateEngine.buildFromFile("home.html");
 		}else{
 			return TemplateEngine.buildFromFile("login.html");
@@ -41,5 +43,10 @@ public class NavResource {
 		TemplateEngine.setSession(req.getSession());
 		return TemplateEngine.buildFromFile("login.html");
 	}
+
 		
+
 }
+
+
+

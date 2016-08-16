@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<connectedobjects>
+<connectedobject>
+<id>10</id>
+<type>termostat</type>
+<etat>closed</etat>
+<emplacement>Salon</emplacement>
+</connectedobject>
+</connectedobjects>
