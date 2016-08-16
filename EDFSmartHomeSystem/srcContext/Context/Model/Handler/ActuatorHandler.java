@@ -29,6 +29,7 @@ public class ActuatorHandler {
 		if(getActuatorFromId(actuatorid)==null) {
 			actuators.add(new Actuator(state,type,etat,emplacement));
 			Writer.serializeActuator();
+			Writer.serializeConnectedObject();
 		}
 	}
 	public List<Actuator> getActuator() {

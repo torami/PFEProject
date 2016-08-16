@@ -124,7 +124,7 @@ public class Writer {
 			e.printStackTrace();
 		}
 		// Serialisation
-		JAXB.marshal(Server.uh, fconnectedobjects);
+		JAXB.marshal(Server.connected, fconnectedobjects);
 		System.out.print("Connected Object sérialisés");
 		Server.connected.print();		
 	}
