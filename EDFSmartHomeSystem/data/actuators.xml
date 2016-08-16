@@ -1,10 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <actuators>
-    <actuator>
-        <id>Salon@SuperJack</id>
-        <type>SuperJack</type>
-        <etat>Activé</etat>
-        <emplacement>Salon</emplacement>
-        <locked>false</locked>
-    </actuator>
+
 </actuators>

@@ -40,7 +40,7 @@ import Context.server.TemplateEngine;
 			String emplacement = formParams.getFirst("emplacement");
 			String locked = formParams.getFirst("locked");
 			boolean verrous = false;
-			if (locked.equals(1))
+			if (locked.equals("1"))
 			{Server.actuator.createActuator(true, type, etat, emplacement);}
 			else {Server.actuator.createActuator(verrous, type, etat, emplacement);}
 			return TemplateEngine.goHome();
