@@ -53,7 +53,7 @@ public class NavResource {
 		TemplateEngine.setSession(req.getSession());
 		return TemplateEngine.buildFromFile("adduser.html");
 	}
-	
+
 
 
 

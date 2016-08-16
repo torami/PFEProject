@@ -1,0 +1,20 @@
+<div style="width:250px;margin:auto;padding:auto;">
+<h1>Actions</h1>
+<h2>Ajouter un utilisateur</h2>
+<form method="post" enctype="application/x-www-form-urlencoded" action="/connectedobject/create">
+    <fieldset>
+        <legend>Informations personnelles</legend>
+        <dl>
+        <dt><label for="form_type">Type: </label></dt>
+        <dd><input type="text" id="form_type" name="type" /></dd>
+        <dt><label for="form_etat">Etat : </label></dt>
+        <dd><input type="text" id="form_etat" name="etat" /></dd>
+        <dt><label for="form_emplacement">Emplacement : </label></dt>
+        <dd><input type="text" id="form_emplacement" name="emplacement" /></dd>
+        <dt><label for="form_dataaction">Data/Action : </label></dt>
+        <dd><input type="text" id="form_dataaction" name="dataaction" /></dd>
+        </dl>
+	<input type="submit" name="submit" />
+    </fieldset>
+</form>
+</div>
