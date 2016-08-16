@@ -1,9 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<connectedobjects>
-<connectedobject>
-<id>10</id>
-<type>termostat</type>
-<etat>closed</etat>
-<emplacement>Salon</emplacement>
-</connectedobject>
-</connectedobjects>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<users>
+    <user>
+        <id>rami</id>
+        <username>dev</username>
+        <password>context</password>
+    </user>
+    <user>
+        <id>dev</id>
+        <username>dev</username>
+        <password>rami</password>
+    </user>
+    <user>
+        <id>cesar</id>
+        <username>cesar</username>
+        <password>liokju</password>
+    </user>
+</users>

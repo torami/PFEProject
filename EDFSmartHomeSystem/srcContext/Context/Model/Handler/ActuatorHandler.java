@@ -31,6 +31,9 @@ public class ActuatorHandler {
 			Writer.serializeActuator();
 		}
 	}
+	public List<Actuator> getActuator() {
+		return actuators;
+	}
 	public Actuator getActuatorFromId(final String actid) {
 		for(Actuator cap : actuators){
 			if(cap.getId().equals(actid)) return cap;

@@ -41,6 +41,13 @@ public class NavResource {
 	}
 	@GET
 	@Produces("text/html")
+	@Path("/form/actuator/add")
+	public String getActuatorForm(@Context HttpServletRequest req) {
+		TemplateEngine.setSession(req.getSession());
+		return TemplateEngine.buildFromFile("actuators.html");
+	}
+	@GET
+	@Produces("text/html")
 	@Path("/form/login")
 	public String getLogin(@Context HttpServletRequest req) {
 		TemplateEngine.setSession(req.getSession());
