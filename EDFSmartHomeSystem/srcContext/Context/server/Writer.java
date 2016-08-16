@@ -15,6 +15,7 @@ import javax.xml.bind.JAXB;
  */
 public class Writer {
 	private static String users_fname;
+	private static String actuators_fname;
 	private static String spaces_fname;
 	private static String openings_fname;
 	private static String connectedobject_fname;
@@ -27,6 +28,7 @@ public class Writer {
 		try {
 			prop.load(new FileInputStream("./conf/server.properties"));
 			users_fname = prop.getProperty("users.filename");
+			actuators_fname = prop.getProperty("actuators.filename");
 			openings_fname = prop.getProperty("openings.filename");
 			spaces_fname = prop.getProperty("spaces.filename");
 			connectedobject_fname = prop.getProperty("connectedobjects.filename");
@@ -52,6 +54,7 @@ public class Writer {
 	serializeOpenings();
 	serializeSpaces();
 	serializeConnectedObject();
+	serializeActuator();
 	}
 	public static void serializeOpenings() {
 		File fopenings = new File(datarep_prefix + openings_fname);
@@ -65,9 +68,23 @@ public class Writer {
 		// Serialisation
 		JAXB.marshal(Server.open, fopenings);
 		System.out.print("Opening sérialisées");
-		Server.uh.print();		
+		Server.open.print();		
 	}
 
+	public static void serializeActuator(){
+		File factuators = new File(datarep_prefix + actuators_fname);
+		// On cree une copie de sauvegarde des fichiers precedents en cas de probleme 
+		factuators.renameTo(new File(backuprep_prefix + actuators_fname+backup_suffix));
+		try {
+			factuators.createNewFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		// Serialisation
+		JAXB.marshal(Server.actuator, factuators);
+		System.out.print("Actuator sérialisées");
+		Server.actuator.print();		
+	}
 
 	public static void serializeUsers() {
 		File fusers = new File(datarep_prefix + users_fname);
@@ -109,7 +126,7 @@ public class Writer {
 		// Serialisation
 		JAXB.marshal(Server.uh, fconnectedobjects);
 		System.out.print("Connected Object sérialisés");
-		Server.uh.print();		
+		Server.connected.print();		
 	}
 
 }

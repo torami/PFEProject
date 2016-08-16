@@ -12,7 +12,9 @@ import java.util.Scanner;
 
 
 
+
 import Context.Model.User;
+import Context.Model.Handler.ActuatorHandler;
 import Context.Model.Handler.ConnectedObjectHandler;
 import Context.Model.Handler.OpeningHandler;
 import Context.Model.Handler.SpaceHandler;
@@ -37,6 +39,7 @@ public class Server {
 	static public OpeningHandler open = new OpeningHandler();
 	static public SpaceHandler space = new SpaceHandler();
 	public static ConnectedObjectHandler connected = new ConnectedObjectHandler();
+	static public ActuatorHandler actuator = new ActuatorHandler();
 
 	public static void main(String[] args) {
 		Loader.load(); // Chargement des fichiers XML

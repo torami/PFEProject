@@ -18,13 +18,13 @@ import javax.xml.bind.annotation.XmlType;
 public class ConnectedObject {
 
 	@XmlElement(name = "id")
-	private String id;
+	protected String id;
 	@XmlElement(name = "type")
-	private String type;
+	protected String type;
 	@XmlElement(name = "etat")
-	private String etat;
+	protected String etat;
 	@XmlElement(name = "emplacement")
-	private String emplacement;
+	protected String emplacement;
 	/**
 	 * this 's a default constructor for JAXB
 	 * @author J60277 

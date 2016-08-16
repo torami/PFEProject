@@ -10,6 +10,7 @@ import java.util.Properties;
 import javax.xml.bind.DataBindingException;
 import javax.xml.bind.JAXB;
 
+import Context.Model.Handler.ActuatorHandler;
 import Context.Model.Handler.ConnectedObjectHandler;
 import Context.Model.Handler.OpeningHandler;
 import Context.Model.Handler.SpaceHandler;
@@ -28,6 +29,7 @@ import Context.exceptions.NoBackupFileException;
 public class Loader {
 	private static String users_fname;
 	private static String spaces_fname;
+	private static String actuators_fname;
 	private static String openings_fname;
 	private static String connectedobjects_fname;
 	private static String backup_suffix;
@@ -39,6 +41,7 @@ public class Loader {
 		try {
 			prop.load(new FileInputStream("./conf/server.properties"));
 			users_fname = prop.getProperty("users.filename");
+			actuators_fname = prop.getProperty("actuators.filename");
 			openings_fname = prop.getProperty("openings.filename");
 			spaces_fname = prop.getProperty("spaces.filename");
 			connectedobjects_fname = prop.getProperty("connectedobjects.filename");
@@ -59,6 +62,7 @@ public class Loader {
 			loadSpaces();
 			loadConnectedObjects();
 			loadOpenings();
+			loadActuators();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out
@@ -77,6 +81,7 @@ public class Loader {
 			restoreOpenings();
 			restoreSpaces();
 			restoreConnectedObjects();
+			restoreActuators();
 			load();
 		} catch (NoBackupFileException e) {
 			e.printStackTrace();
@@ -89,6 +94,17 @@ public class Loader {
 			Server.uh =  JAXB.unmarshal(fusers, UserHandler.class);
 			System.out.print(fusers.getAbsolutePath());
 			Server.uh.print();
+		} catch (DataBindingException e) {
+			throw new LoadFileException(
+					"Erreur au chargement du fichier des utilisateurs");
+		}
+	}
+	public static void loadActuators() throws LoadFileException {
+		try {
+			File factuators = new File(datarep_prefix + actuators_fname);
+			Server.actuator =  JAXB.unmarshal(factuators, ActuatorHandler.class);
+			System.out.print(factuators.getAbsolutePath());
+			Server.actuator.print();
 		} catch (DataBindingException e) {
 			throw new LoadFileException(
 					"Erreur au chargement du fichier des utilisateurs");
@@ -136,6 +152,14 @@ public class Loader {
 		else
 			throw new NoBackupFileException(
 					"Aucun fichier de sauvegarde pour n'a été tourvé pour les utilisateurs");
+	}
+	public static void restoreActuators() throws NoBackupFileException {
+		File factuators = new File(backuprep_prefix + actuators_fname + backup_suffix);
+		if (factuators.exists())
+			factuators.renameTo(new File(datarep_prefix + actuators_fname));
+		else
+			throw new NoBackupFileException(
+					"Aucun fichier de sauvegarde pour n'a été tourvé pour les actionneurs");
 	}
 	public static void restoreOpenings() throws NoBackupFileException {
 		File fopenings = new File(backuprep_prefix + openings_fname + backup_suffix);
