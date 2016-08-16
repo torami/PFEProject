@@ -19,13 +19,15 @@ import service.model.Activity;
  */
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "space", propOrder = { "id", "name","opening"})
+@XmlType(name = "space", propOrder = { "id", "name","opening","locked"})
 @XmlRootElement(name = "space")
 public class Space {
 	@XmlElement(name = "id")
 	private String id;
 	@XmlElement(name = "name")
 	private String name;
+	@XmlElement(name = "locked")
+	private boolean locked = false;
 	@XmlElement(name = "opening")
 	private List<Opening> opening = null;
 	
@@ -66,6 +68,12 @@ public class Space {
 	}
 	public void setName(final String name) {
 		this.name = name;
+	}
+	public boolean isLocked() {
+		return locked;
+	}
+	public void setLocked(boolean locked) {
+		this.locked = locked;
 	}
 	public static String createSpaceFormName(final String name) {
 		String str = "";
