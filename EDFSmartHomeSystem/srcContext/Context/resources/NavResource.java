@@ -48,6 +48,13 @@ public class NavResource {
 	}
 	@GET
 	@Produces("text/html")
+	@Path("/form/space/add")
+	public String getSpaceForm(@Context HttpServletRequest req) {
+		TemplateEngine.setSession(req.getSession());
+		return TemplateEngine.buildFromFile("addspace.html");
+	}
+	@GET
+	@Produces("text/html")
 	@Path("/form/login")
 	public String getLogin(@Context HttpServletRequest req) {
 		TemplateEngine.setSession(req.getSession());

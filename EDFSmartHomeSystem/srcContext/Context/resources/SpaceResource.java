@@ -56,8 +56,12 @@ public class SpaceResource {
 	@Consumes("application/x-www-form-urlencoded")
 	public String create(@Context HttpServletRequest req, MultivaluedMap<String, String> formParams){
 		TemplateEngine.setSession(req.getSession());
-		String Nom = formParams.getFirst("nom");
-		Server.space.createSpace(Nom);
+		String Nom = formParams.getFirst("name");
+		String Lock = formParams.getFirst("lock");
+		if(Lock.equals("yes"))
+		Server.space.createSpace(Nom,true);
+		else
+		Server.space.createSpace(Nom,false);
 		return TemplateEngine.goHome();
 	}
 
