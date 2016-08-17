@@ -101,7 +101,7 @@ public class TemplateEngine {
 		
 		if(session.getAttribute("serviceid")!=null){
 			String serviceid = (String) session.getAttribute("serviceid");
-			Service u = Server.serh.getServiceFromId(serviceid);
+			Service u = ServerS.serh.getServiceFromId(serviceid);
 			builder.append("<div id='navbar'>")
 				.append("Vous &ecirc;tes connect&eacute; en tant que : ")
 				.append(u.getSubject())

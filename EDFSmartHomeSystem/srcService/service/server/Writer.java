@@ -57,9 +57,9 @@ public class Writer {
 			e.printStackTrace();
 		}
 		// Serialisation
-		JAXB.marshal(Server.serh, fservices);
+		JAXB.marshal(ServerS.serh, fservices);
 		System.out.print("Service serlialisees");
-		Server.serh.print();		
+		ServerS.serh.print();		
 	}
 	
 

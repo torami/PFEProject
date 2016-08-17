@@ -3,6 +3,7 @@ package service.resources;
 
 
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
@@ -15,34 +16,36 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MultivaluedMap;
 
-
+import Context.Model.User;
 import Context.server.Server;
 import Context.server.TemplateEngine;
-import Context.Model.User;
-import Context.Model.Handler.UserHandler;
+import service.model.Service;
+import service.model.handlers.ServiceHandler;
+import service.server.ServerS;
 
-@Path("/user")
+
+@Path("/service")
 public class ServiceResource {
 	@GET
-	@Path("/id/{userid}")
+	@Path("/id/{serviceid}")
 	@Produces("text/xml")
-	public User getUserFromId(@PathParam("userid") String userid) {
-		User u = Server.uh.getUserFromId(userid);
+	public Service getServiceFromId(@PathParam("serviceid") String serviceid) {
+		Service u = ServerS.serh.getServiceFromId(serviceid);
 		return u;
 	}
 
 
-	@POST
-	@Path("/create")
-	@Produces("text/html")
-	@Consumes("application/x-www-form-urlencoded")
-	public String create(@Context HttpServletRequest req, MultivaluedMap<String, String> formParams){
-		TemplateEngine.setSession(req.getSession());
-		String login = formParams.getFirst("login");
-		String password = formParams.getFirst("password");
-		Server.uh.createUser(login, password);
-		return TemplateEngine.goHome();
-	}	
+//	@POST
+//	@Path("/create")
+//	@Produces("text/html")
+//	@Consumes("application/x-www-form-urlencoded")
+//	public String create(@Context HttpServletRequest req, MultivaluedMap<String, String> formParams){
+//		TemplateEngine.setSession(req.getSession());
+//		String login = formParams.getFirst("login");
+//		String password = formParams.getFirst("password");
+//		Server.uh.createUser(login, password);
+//		return TemplateEngine.goHome();
+//	}	
 	
 	@POST
 	@Path("/login")
@@ -74,8 +77,8 @@ public class ServiceResource {
 	@GET
 	@Path("/all/")
 	@Produces("text/xml")
-	public UserHandler getAllUsers() {
-		return Server.uh;
+	public ServiceHandler getAllServices() {
+		return ServerS.serh;
 	}
 
 }

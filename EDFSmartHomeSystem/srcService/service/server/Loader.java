@@ -71,9 +71,9 @@ public class Loader {
 	public static void loadservices() throws LoadFileException {
 		try {
 			File fservices = new File(datarep_prefix + services_fname);
-			Server.serh =   JAXB.unmarshal(fservices, ServiceHandler.class);
+			ServerS.serh =   JAXB.unmarshal(fservices, ServiceHandler.class);
 			System.out.print(fservices.getAbsolutePath());
-			Server.serh.print();
+			ServerS.serh.print();
 		} catch (DataBindingException e) {
 			throw new LoadFileException(
 					"Erreur au chargement du fichier des utilisateurs");

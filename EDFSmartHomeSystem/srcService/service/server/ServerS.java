@@ -22,7 +22,7 @@ import com.sun.jersey.api.container.grizzly.GrizzlyWebContainerFactory;
  * La javadoc du serveur Grizzly est disponible a l'adresse : https://grizzly.dev.java.net/nonav/apidocs/index.html
  * @author ndelafor
  */
-public class Server {
+public class ServerS {
 	/**
 	 * Gestionnaire de {@link User}
 	 */
