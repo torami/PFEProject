@@ -41,9 +41,10 @@ public class Space {
 	 * @param nom
 	 * @author J60277
 	 */
-	public Space(final String name) {
+	public Space(final String name, final boolean lock) {
 		this.id = createSpaceFormName(name);
 		this.name = name;
+		this.locked=lock;
 	}
 	/**
 	 * Some Getters & Setters Tools
