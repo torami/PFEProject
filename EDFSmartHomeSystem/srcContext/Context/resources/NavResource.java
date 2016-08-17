@@ -55,6 +55,13 @@ public class NavResource {
 	}
 	@GET
 	@Produces("text/html")
+	@Path("/form/openings/add")
+	public String getOpeningsForm(@Context HttpServletRequest req) {
+		TemplateEngine.setSession(req.getSession());
+		return TemplateEngine.buildFromFile("addopening.html");
+	}
+	@GET
+	@Produces("text/html")
 	@Path("/form/login")
 	public String getLogin(@Context HttpServletRequest req) {
 		TemplateEngine.setSession(req.getSession());

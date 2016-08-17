@@ -72,7 +72,7 @@ public class SpaceResource {
 		TemplateEngine.setSession(req.getSession());
 		final StringBuilder sb = new StringBuilder();
 		sb.append("<h1>Space</h1>\n<table border='1' cellpadding='2' cellspacing='0' style='margin-top:10px'>");
-		sb.append("\n<tr style='font-weight:bold;'><td>ID</td><td>Name</td><td>Nombre d'ouvrants</td></tr>");
+		sb.append("\n<tr style='font-weight:bold;'><td>ID</td><td>Name</td></tr>");
 		List<Space> blist = Server.space.getSpace();
 		
 		for (Space b : blist) {
@@ -80,8 +80,7 @@ public class SpaceResource {
 			.append(b.getId())
 			.append("</td><td>")
 			.append(b.getName())
-			.append("</td><td>")
-			.append(b.getOpening().size())
+		
 			.append("</td></tr>");
 		}
 		sb.append("\n</table>");

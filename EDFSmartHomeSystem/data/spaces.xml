@@ -1,14 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <spaces>
-<space>
-<id>Salon@Salon</id>
-<name>Salon</name>
-<locked>fals </locked>
-<opening>
-<id>01</id>
-<type>Window</type>
-<etat>closed</etat>
-<emplacement>Salon</emplacement>
-</opening>
-</space>
+    <space>
+        <id>Salon@Salon</id>
+        <name>Salon</name>
+        <opening>
+            <id>01</id>
+            <type>Window</type>
+            <etat>closed</etat>
+            <emplacement>Salon</emplacement>
+        </opening>
+        <locked>false</locked>
+    </space>
+    <space>
+        <id>SDB@SDB</id>
+        <name>SDB</name>
+        <locked>false</locked>
+    </space>
 </spaces>
