@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <connectedobjects>
     <connectedobject>
-        <id>Salon@SuperJack</id>
-        <type>SuperJack</type>
+        <id>Salon@Verrain</id>
+        <type>Verrain</type>
         <etat>Activé</etat>
         <emplacement>Salon</emplacement>
     </connectedobject>

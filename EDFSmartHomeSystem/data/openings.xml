@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <openings>
-<opening>
-<id>01</id>
-<type>Window</type>
-<etat>closed</etat>
-<emplacement>Salon</emplacement>
-</opening>
+
 </openings>
