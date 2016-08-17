@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <spaces>
     <space>
-        <id>salon@salon</id>
-        <name>salon</name>
+        <id>Salon@Salon</id>
+        <name>Salon</name>
+        <opening/>
+        <opening>
+            <id>Fenêtre@Salon</id>
+            <type>Fenêtre</type>
+            <etat>Ouvert</etat>
+            <emplacement>Salon</emplacement>
+        </opening>
         <locked>false</locked>
+    </space>
+    <space>
+        <id>sdb@sdb</id>
+        <name>sdb</name>
+        <locked>true</locked>
     </space>
 </spaces>

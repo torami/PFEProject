@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <openings>
-
+    <opening>
+        <id>Fenêtre@Salon</id>
+        <type>Fenêtre</type>
+        <etat>Ouvert</etat>
+        <emplacement>Salon</emplacement>
+    </opening>
 </openings>

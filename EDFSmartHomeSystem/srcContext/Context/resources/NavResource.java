@@ -37,7 +37,7 @@ public class NavResource {
 	@Path("/form/connectedobject/add")
 	public String getConnectedObjectForm(@Context HttpServletRequest req) {
 		TemplateEngine.setSession(req.getSession());
-		return TemplateEngine.buildFromFile("addconnectedobject.html");
+		return TemplateEngine.buildFromFile("addconnectedobjct.html");
 	}
 	@GET
 	@Produces("text/html")

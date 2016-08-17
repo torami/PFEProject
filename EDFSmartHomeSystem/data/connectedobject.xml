@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <connectedobjects>
     <connectedobject>
-        <id>Salon@Verrain</id>
-        <type>Verrain</type>
+        <id>salon@SuperJack</id>
+        <type>SuperJack</type>
         <etat>Activé</etat>
+        <emplacement>salon</emplacement>
+    </connectedobject>
+    <connectedobject>
+        <id>Salon@Sensor</id>
+        <type>Sensor</type>
+        <etat>O</etat>
         <emplacement>Salon</emplacement>
     </connectedobject>
 </connectedobjects>
