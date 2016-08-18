@@ -12,6 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 
+
 import Context.Model.ConnectedObject;
 import service.server.Writer;
 import service.model.Activity;
@@ -45,6 +46,24 @@ public class ActivityHandler {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
+	}
+	/**
+	 * Renvoie la liste de toutes les activités
+	 * @return liste
+	 */
+	public List<Activity> getActivitys() {
+		return activitys;
+	}
+	/**
+	 * Permet de récupérer l'instance d'une activité à partir de son ID
+	 * @param activityid ID du service &agrave; r&eacute;cup&eacute;rer 
+	 * @return activity correspondante
+	 */
+	public Activity getActivityFromId(final String activityid) {
+		for(Activity u : activitys){
+			if(u.getId().equals(activityid)) return u;
+		}
+		return null;
 	}
 	/**
 	 * Methode utilitaire pour afficher le nombre d'&eacute;l&eacute;ments contenus dans la liste.
