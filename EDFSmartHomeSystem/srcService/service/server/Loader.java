@@ -10,7 +10,9 @@ import java.util.Properties;
 import javax.xml.bind.DataBindingException;
 import javax.xml.bind.JAXB;
 
+import service.model.ModeOperator;
 import service.model.handlers.ActivityHandler;
+import service.model.handlers.ModeOperatorHandler;
 import service.model.handlers.ServiceHandler;
 import Context.exceptions.LoadFileException;
 import Context.exceptions.NoBackupFileException;
@@ -25,6 +27,8 @@ import Context.exceptions.NoBackupFileException;
  */
 public class Loader {
 	private static String services_fname;
+	private static String modes_fname;
+
 	private static String activitys_fname;
 	private static String backup_suffix;
 	private static String datarep_prefix;
@@ -35,6 +39,7 @@ public class Loader {
 		try {
 			prop.load(new FileInputStream("./conf/server.service.properties"));
 			services_fname = prop.getProperty("services.filename");
+			modes_fname = prop.getProperty("modes.filename");
 			activitys_fname= prop.getProperty("activitys.filename");
 			backup_suffix = prop.getProperty("backup.suffix");
 			datarep_prefix = prop.getProperty("data.repository.prefix");
@@ -51,6 +56,8 @@ public class Loader {
 		try {
 			loadservices();
 			loadactivitys();
+			loadmodes();
+
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -68,6 +75,7 @@ public class Loader {
 		try {
 			restoreservices();
 			restoreactivitys();
+			restoremodes();
 			load();
 		} catch (NoBackupFileException e) {
 			e.printStackTrace();
@@ -80,6 +88,17 @@ public class Loader {
 			ServerS.serh =   JAXB.unmarshal(fservices, ServiceHandler.class);
 			System.out.print(fservices.getAbsolutePath());
 			ServerS.serh.print();
+		} catch (DataBindingException e) {
+			throw new LoadFileException(
+					"Erreur au chargement du fichier des utilisateurs");
+		}
+	}
+	public static void loadmodes() throws LoadFileException {
+		try {
+			File fmodes = new File(datarep_prefix + modes_fname);
+			ServerS.mode =   JAXB.unmarshal(fmodes, ModeOperatorHandler.class);
+			System.out.print(fmodes.getAbsolutePath());
+			ServerS.mode.print();
 		} catch (DataBindingException e) {
 			throw new LoadFileException(
 					"Erreur au chargement du fichier des utilisateurs");
@@ -105,6 +124,14 @@ public class Loader {
 		else
 			throw new NoBackupFileException(
 					"Aucun fichier de sauvegarde pour n'a été trouvé pour les services");
+	}
+	public static void restoremodes() throws NoBackupFileException {
+		File fmodes = new File(backuprep_prefix + modes_fname + backup_suffix);
+		if (fmodes.exists())
+			fmodes.renameTo(new File(datarep_prefix + modes_fname));
+		else
+			throw new NoBackupFileException(
+					"Aucun fichier de sauvegarde pour n'a été trouvé pour les modes");
 	}
 
 	public static void restoreactivitys() throws NoBackupFileException {

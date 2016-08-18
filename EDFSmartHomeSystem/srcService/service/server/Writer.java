@@ -16,6 +16,7 @@ import javax.xml.bind.JAXB;
 public class Writer {
 	private static String services_fname;
 	private static String activitys_fname;
+	private static String modes_fname;
 	private static String backup_suffix;
 	private static String datarep_prefix;
 	private static String backuprep_prefix;
@@ -26,6 +27,7 @@ public class Writer {
 			prop.load(new FileInputStream("./conf/server.service.properties"));
 			services_fname = prop.getProperty("services.filename");
 			activitys_fname = prop.getProperty("activitys.filename");
+			modes_fname = prop.getProperty("modes.filename");
 			backup_suffix = prop.getProperty("backup.suffix");
 			datarep_prefix = prop.getProperty("data.repository.prefix");
 			backuprep_prefix = prop.getProperty("backup.repository.prefix");
@@ -78,6 +80,19 @@ public class Writer {
 		System.out.print("Activité serlialisees");
 		ServerS.act.print();		
 	}
-	
+	public static void 	serializeModes() {
+		File fmodes = new File(datarep_prefix + modes_fname);
+		// On cree une copie de sauvegarde des fichiers precedents en cas de probleme 
+		fmodes .renameTo(new File(backuprep_prefix + modes_fname+backup_suffix));
+		try {
+			fmodes .createNewFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		// Serialisation
+		JAXB.marshal(ServerS.act, fmodes );
+		System.out.print("Modes serlialisees");
+		ServerS.act.print();		
+	}
 
 }

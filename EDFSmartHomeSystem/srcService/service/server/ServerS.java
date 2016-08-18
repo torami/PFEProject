@@ -10,7 +10,9 @@ import java.util.Scanner;
 
 
 
+
 import service.model.handlers.ActivityHandler;
+import service.model.handlers.ModeOperatorHandler;
 import service.model.handlers.ServiceHandler;
 import Context.Model.User;
 import Context.Model.Handler.UserHandler;
@@ -31,6 +33,8 @@ public class ServerS {
 
 	static public ServiceHandler serh = new ServiceHandler();
 	static public ActivityHandler act = new ActivityHandler();
+	static public ModeOperatorHandler mode = new ModeOperatorHandler();
+
 
 
 	public static void main(String[] args) {
