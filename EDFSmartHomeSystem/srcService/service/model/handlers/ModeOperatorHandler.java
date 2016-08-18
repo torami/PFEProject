@@ -35,9 +35,9 @@ public class ModeOperatorHandler {
 	 * @param <list> rule  list of rule composing the mode
 	 * @throws UnsupportedEncodingException
 	 */
-	public void createMode(final String label, final List<Rule> rule) {
+	public void createMode(final String label,final boolean active, final List<Rule> rule) {
 		try {
-			modes.add(new ModeOperator(label,rule));
+			modes.add(new ModeOperator(label,active,rule));
 			Writer.serializeServices();
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();

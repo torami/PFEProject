@@ -19,6 +19,7 @@ import Context.Model.ConnectedObject;
 @XmlType(name="mode", propOrder={
 		"id",
 		"label",
+		"activated",
 		"rules"
 }
 		)
@@ -27,6 +28,8 @@ public class ModeOperator {
 	private String id;
 	@XmlElement(name = "label")
 	private String label;
+	@XmlElement(name = "activated")
+	private boolean activated = false;
 	@XmlElement(name = "rules")
 	private List<Rule> rules = null;
 	/**
@@ -41,9 +44,10 @@ public class ModeOperator {
 	 * @param rule the mode is rule list
 	 * @throws UnsupportedEncodingException
 	 */
-	public ModeOperator(final String label, final List<Rule> rules) throws UnsupportedEncodingException {
+	public ModeOperator(final String label,boolean active, final List<Rule> rules) throws UnsupportedEncodingException {
 		this.label = label;
 		this.rules= rules;
+		this.activated=active;
 		this.id = createModeOperatorId(label);
 	}
 	
@@ -52,6 +56,10 @@ public class ModeOperator {
 	}
 	public String getLabel() {
 		return label;
+	}
+	
+	public boolean isActivated() {
+		return activated;
 	}
 	public List<Rule> getRules() {
 		return rules;
@@ -62,6 +70,10 @@ public class ModeOperator {
 	}
 	public void setLabel(String label) {
 		this.label = label;
+	}
+	
+	public void setActivated(boolean activated) {
+		this.activated = activated;
 	}
 	public void setRules(List<Rule> rules) {
 		this.rules = rules;
