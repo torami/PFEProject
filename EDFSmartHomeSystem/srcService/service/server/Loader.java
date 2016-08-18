@@ -10,6 +10,7 @@ import java.util.Properties;
 import javax.xml.bind.DataBindingException;
 import javax.xml.bind.JAXB;
 
+import service.model.handlers.ActivityHandler;
 import service.model.handlers.ServiceHandler;
 import Context.exceptions.LoadFileException;
 import Context.exceptions.NoBackupFileException;
@@ -24,6 +25,7 @@ import Context.exceptions.NoBackupFileException;
  */
 public class Loader {
 	private static String services_fname;
+	private static String activitys_fname;
 	private static String backup_suffix;
 	private static String datarep_prefix;
 	private static String backuprep_prefix;
@@ -33,6 +35,7 @@ public class Loader {
 		try {
 			prop.load(new FileInputStream("./conf/server.service.properties"));
 			services_fname = prop.getProperty("services.filename");
+			activitys_fname= prop.getProperty("activitys.filename");
 			backup_suffix = prop.getProperty("backup.suffix");
 			datarep_prefix = prop.getProperty("data.repository.prefix");
 			backuprep_prefix = prop.getProperty("backup.repository.prefix");
@@ -47,6 +50,8 @@ public class Loader {
 	public static void load() {
 		try {
 			loadservices();
+			loadactivitys();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out
@@ -62,6 +67,7 @@ public class Loader {
 	public static void restore() {
 		try {
 			restoreservices();
+			restoreactivitys();
 			load();
 		} catch (NoBackupFileException e) {
 			e.printStackTrace();
@@ -79,6 +85,17 @@ public class Loader {
 					"Erreur au chargement du fichier des utilisateurs");
 		}
 	}
+	public static void loadactivitys() throws LoadFileException {
+		try {
+			File factivitys = new File(datarep_prefix + activitys_fname);
+			ServerS.act =   JAXB.unmarshal(factivitys , ActivityHandler.class);
+			System.out.print(factivitys .getAbsolutePath());
+			ServerS.act.print();
+		} catch (DataBindingException e) {
+			throw new LoadFileException(
+					"Erreur au chargement du fichier des activit�s");
+		}
+	}
 
 
 	public static void restoreservices() throws NoBackupFileException {
@@ -87,10 +104,17 @@ public class Loader {
 			fservices.renameTo(new File(datarep_prefix + services_fname));
 		else
 			throw new NoBackupFileException(
-					"Aucun fichier de sauvegarde pour n'a été trouvé pour les utilisateurs");
+					"Aucun fichier de sauvegarde pour n'a été trouvé pour les services");
 	}
 
-	
+	public static void restoreactivitys() throws NoBackupFileException {
+		File factivitys = new File(backuprep_prefix + activitys_fname + backup_suffix);
+		if (factivitys.exists())
+			factivitys.renameTo(new File(datarep_prefix + activitys_fname));
+		else
+			throw new NoBackupFileException(
+					"Aucun fichier de sauvegarde pour n'a été trouvé pour les activit�s");
+	}
 
 
 }

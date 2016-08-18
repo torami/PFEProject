@@ -15,6 +15,7 @@ import javax.xml.bind.JAXB;
  */
 public class Writer {
 	private static String services_fname;
+	private static String activitys_fname;
 	private static String backup_suffix;
 	private static String datarep_prefix;
 	private static String backuprep_prefix;
@@ -24,6 +25,7 @@ public class Writer {
 		try {
 			prop.load(new FileInputStream("./conf/server.service.properties"));
 			services_fname = prop.getProperty("services.filename");
+			activitys_fname = prop.getProperty("activitys.filename");
 			backup_suffix = prop.getProperty("backup.suffix");
 			datarep_prefix = prop.getProperty("data.repository.prefix");
 			backuprep_prefix = prop.getProperty("backup.repository.prefix");
@@ -43,6 +45,7 @@ public class Writer {
 	 */
 	public static void serialize() throws IOException {
 	serializeServices();
+	serializeActivitys();
 	}
 	
 
@@ -60,6 +63,20 @@ public class Writer {
 		JAXB.marshal(ServerS.serh, fservices);
 		System.out.print("Service serlialisees");
 		ServerS.serh.print();		
+	}
+	public static void 	serializeActivitys() {
+		File factivitys = new File(datarep_prefix + activitys_fname);
+		// On cree une copie de sauvegarde des fichiers precedents en cas de probleme 
+		factivitys .renameTo(new File(backuprep_prefix + activitys_fname+backup_suffix));
+		try {
+			factivitys .createNewFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		// Serialisation
+		JAXB.marshal(ServerS.act, factivitys );
+		System.out.print("Activité serlialisees");
+		ServerS.act.print();		
 	}
 	
 

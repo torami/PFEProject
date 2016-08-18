@@ -9,6 +9,8 @@ import java.util.Scanner;
 
 
 
+
+import service.model.handlers.ActivityHandler;
 import service.model.handlers.ServiceHandler;
 import Context.Model.User;
 import Context.Model.Handler.UserHandler;
@@ -28,6 +30,8 @@ public class ServerS {
 	 */
 
 	static public ServiceHandler serh = new ServiceHandler();
+	static public ActivityHandler act = new ActivityHandler();
+
 
 	public static void main(String[] args) {
 		Loader.load(); // Chargement des fichiers XML
