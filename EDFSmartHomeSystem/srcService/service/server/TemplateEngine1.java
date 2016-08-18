@@ -11,7 +11,7 @@ import org.apache.commons.lang.StringEscapeUtils;
 import service.model.Service;
 import Context.Model.User;
 
-public class TemplateEngine {
+public class TemplateEngine1 {
 	private static HttpSession session;
 	public static String build(final String pagebody){
 		try {

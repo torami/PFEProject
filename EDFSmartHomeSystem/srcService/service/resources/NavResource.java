@@ -9,7 +9,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 
-import Context.server.TemplateEngine;
+
+import service.server.TemplateEngine1;
 
 @Path("/")
 public class NavResource {
@@ -17,34 +18,26 @@ public class NavResource {
 	@Produces("text/html")
 	public String getHome(@Context HttpServletRequest req) {
 		HttpSession session = req.getSession();
-		TemplateEngine.setSession(req.getSession());
-		
-
-		if(session.getAttribute("userid")!=null){
-			String userid = (String) session.getAttribute("userid");
-			System.out.println("Vous etes identifiee en tant que :"+userid);
-			return TemplateEngine.buildFromFile("home.html");
-		}else{
-			return TemplateEngine.buildFromFile("login.html");
+		TemplateEngine1.setSession(req.getSession());
+			return TemplateEngine1.buildFromFile("home.html");
 		}
-	}
+
 	
 	
 	@GET
 	@Path("/{filename}")
 	public String getFile(@PathParam("filename") String filename) {
-		return TemplateEngine.getFile(filename);
+		return TemplateEngine1.getFile(filename);
 	}
 	
 	@GET
 	@Produces("text/html")
 	@Path("/form/login")
 	public String getLogin(@Context HttpServletRequest req) {
-		TemplateEngine.setSession(req.getSession());
-		return TemplateEngine.buildFromFile("login.html");
+		TemplateEngine1.setSession(req.getSession());
+		return TemplateEngine1.buildFromFile("login.html");
 	}
-
-		
+	
 
 }
 

@@ -5,20 +5,15 @@ package service.resources;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
+
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MultivaluedMap;
-
-import Context.Model.User;
+import Context.Model.ConnectedObject;
 import Context.server.Server;
-import Context.server.TemplateEngine;
+import service.server.TemplateEngine1;
 import service.model.Service;
 import service.model.handlers.ServiceHandler;
 import service.server.ServerS;
@@ -33,46 +28,30 @@ public class ServiceResource {
 		Service u = ServerS.serh.getServiceFromId(serviceid);
 		return u;
 	}
-
-
-//	@POST
-//	@Path("/create")
-//	@Produces("text/html")
-//	@Consumes("application/x-www-form-urlencoded")
-//	public String create(@Context HttpServletRequest req, MultivaluedMap<String, String> formParams){
-//		TemplateEngine.setSession(req.getSession());
-//		String login = formParams.getFirst("login");
-//		String password = formParams.getFirst("password");
-//		Server.uh.createUser(login, password);
-//		return TemplateEngine.goHome();
-//	}	
-	
-	@POST
-	@Path("/login")
-	@Produces("text/html")
-	@Consumes("application/x-www-form-urlencoded")
-	public String login(@Context HttpServletRequest req, @FormParam("login") String login, MultivaluedMap<String, String> formParams) {
-		TemplateEngine.setSession(req.getSession());
-		String password = formParams.getFirst("password");
-		if(Server.uh.VerifyloginAndPassword(login, password)==true){
-			HttpSession session = req.getSession();
-			session.setAttribute("userid", User.createUserId(login));
-			System.out.println("USER LOGIN : "+login);
-		}
-		return TemplateEngine.goHome();
-	}	
-	
 	@GET
-	@Path("/logout")
+	@Path("/all/html")
 	@Produces("text/html")
-	public String logout(@Context HttpServletRequest req) {
-		TemplateEngine.setSession(req.getSession());
-		HttpSession session = req.getSession();
-		String userid = (String) session.getAttribute("userid");
-		System.out.println("USER LOGOUT : "+userid);
-		session.removeAttribute("userid");
-		return TemplateEngine.redirect("/", 2, "you will be disconnected in 2 seconds.");
-	}	
+	public String getAllConnectedObjectHtml(@Context HttpServletRequest req) {
+		TemplateEngine1.setSession(req.getSession());
+		final StringBuilder sb = new StringBuilder();
+		sb.append("<h1>Capteurs</h1>\n<table border='1' cellpadding='2' cellspacing='0' style='margin-top:10px'>");
+		sb.append("\n<tr style='font-weight:bold;'><td>ID</td><td>Subject</td><td>ActivationState</td><td>Activity</td></tr>");
+		List<Service> blist = ServerS.serh.getServices();
+				for (Service b : blist) {
+			sb.append("\n<tr><td>")
+			.append(b.getId())
+			.append("</td><td>")
+			.append(b.getSubject())
+			.append("</td><td>")
+			.append(b.isActivationState())
+			.append("</td><td>")
+			.append(b.getActivity().size())
+			.append("</td></<tr>");
+		}
+		sb.append("\n</table>");
+		return TemplateEngine1.build(sb.toString());
+	}
+
 	
 	@GET
 	@Path("/all/")

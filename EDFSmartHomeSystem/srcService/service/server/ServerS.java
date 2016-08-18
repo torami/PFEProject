@@ -38,7 +38,8 @@ public class ServerS {
 		// renseigne le moteur de Jersey sur l'emplacement des classes a deployer
 		final Map<String, String> initParams = new HashMap<String, String>();
 		initParams.put("com.sun.jersey.config.property.packages", "service.resources"); 
-		
+ 
+
 		try {
 			// On deploie les ressource a baseURI et retourne un SelectorThread
 			SelectorThread threadSelector = GrizzlyWebContainerFactory.create(baseUri, initParams);
