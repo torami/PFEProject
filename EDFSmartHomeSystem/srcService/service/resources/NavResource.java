@@ -8,8 +8,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
-
-
 import service.server.TemplateEngine1;
 
 @Path("/")
@@ -22,7 +20,20 @@ public class NavResource {
 			return TemplateEngine1.buildFromFile("home.html");
 		}
 
-	
+	@GET
+	@Produces("text/html")
+	@Path("/form/mode/add")
+	public String getModeForm(@Context HttpServletRequest req) {
+		TemplateEngine1.setSession(req.getSession());
+		return TemplateEngine1.buildFromFile("addmode.html");
+	}
+	@GET
+	@Produces("text/html")
+	@Path("/form/mode/delete")
+	public String getModeDeleteForm(@Context HttpServletRequest req) {
+		TemplateEngine1.setSession(req.getSession());
+		return TemplateEngine1.buildFromFile("deletemode.html");
+	}
 	
 	@GET
 	@Path("/{filename}")

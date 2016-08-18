@@ -1,15 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <activitys>
-<activity>
-<id>01</id>
-<label>Open</label>
-<resources>
-    <connectedobject>
-        <id>salon@SuperJack</id>
-        <type>SuperJack</type>
-        <etat>Activé</etat>
-        <emplacement>salon</emplacement>
-    </connectedobject>
-</resources>
-</activity>
+
 </activitys>

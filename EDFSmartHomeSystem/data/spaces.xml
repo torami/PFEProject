@@ -10,6 +10,12 @@
             <etat>Ouvert</etat>
             <emplacement>Salon</emplacement>
         </opening>
+        <opening>
+            <id>Porte@Salon</id>
+            <type>Porte</type>
+            <etat>Ouverte</etat>
+            <emplacement>Salon</emplacement>
+        </opening>
         <locked>false</locked>
     </space>
     <space>

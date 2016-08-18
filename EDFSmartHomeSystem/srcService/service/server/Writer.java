@@ -48,6 +48,7 @@ public class Writer {
 	public static void serialize() throws IOException {
 	serializeServices();
 	serializeActivitys();
+	serializeModes();
 	}
 	
 
@@ -83,14 +84,14 @@ public class Writer {
 	public static void 	serializeModes() {
 		File fmodes = new File(datarep_prefix + modes_fname);
 		// On cree une copie de sauvegarde des fichiers precedents en cas de probleme 
-		fmodes .renameTo(new File(backuprep_prefix + modes_fname+backup_suffix));
+		fmodes .renameTo(new File(backuprep_prefix +modes_fname+backup_suffix));
 		try {
 			fmodes .createNewFile();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		// Serialisation
-		JAXB.marshal(ServerS.act, fmodes );
+		JAXB.marshal(ServerS.mode,fmodes );
 		System.out.print("Modes serlialisees");
 		ServerS.act.print();		
 	}

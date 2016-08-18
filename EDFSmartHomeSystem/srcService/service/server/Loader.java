@@ -101,7 +101,7 @@ public class Loader {
 			ServerS.mode.print();
 		} catch (DataBindingException e) {
 			throw new LoadFileException(
-					"Erreur au chargement du fichier des utilisateurs");
+					"Erreur au chargement du fichier des modes");
 		}
 	}
 	public static void loadactivitys() throws LoadFileException {

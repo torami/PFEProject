@@ -5,4 +5,9 @@
         <username>dev</username>
         <password>context</password>
     </user>
+    <user>
+        <id>Jose</id>
+        <username>Jose</username>
+        <password>azerty</password>
+    </user>
 </users>

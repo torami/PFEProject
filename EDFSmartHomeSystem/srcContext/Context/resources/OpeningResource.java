@@ -23,7 +23,7 @@ public class OpeningResource {
 
 	@GET
 	@Path("/id/{openingid}")
-	@Produces("text/xml")
+	@Produces("text/html")
 	public Opening getOpeningFromId(@PathParam("openingid") String issueid) {
 		Opening t = Server.open.getOpeningFromId(issueid);
 		return t;

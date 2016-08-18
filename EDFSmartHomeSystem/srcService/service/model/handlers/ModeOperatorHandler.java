@@ -9,7 +9,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import service.model.Activity;
 import service.model.ModeOperator;
 import service.model.Rule;
 import service.model.Service;
@@ -38,7 +37,7 @@ public class ModeOperatorHandler {
 	public void createMode(final String label,final boolean active, final List<Rule> rule) {
 		try {
 			modes.add(new ModeOperator(label,active,rule));
-			Writer.serializeServices();
+			Writer.serializeModes();
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
@@ -49,6 +48,16 @@ public class ModeOperatorHandler {
 	 */
 	public List<ModeOperator> getModes() {
 		return modes;
+	}
+	/**
+	 * Permet de supprimer un mode existant &agrave; partir de son ID
+	 * @param userid ID de l'utilisateur &agrave; supprimer
+	 * @return <code>true</code> si l'utilisateur a &eacute;t&eacute; trouv&eacute; et <code>false</code> sinon
+	 */
+	public boolean removeModeFromId(final String modeid){
+		boolean result = modes.remove(getModeFromId(modeid));
+		Writer.serializeModes();
+		return result;
 	}
 	/**
 	 * Permet de récupérer l'instance d'un mode à partir de son ID
