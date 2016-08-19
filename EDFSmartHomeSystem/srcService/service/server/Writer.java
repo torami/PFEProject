@@ -15,6 +15,7 @@ import javax.xml.bind.JAXB;
  */
 public class Writer {
 	private static String services_fname;
+	private static String rules_fname;
 	private static String activitys_fname;
 	private static String modes_fname;
 	private static String backup_suffix;
@@ -26,6 +27,7 @@ public class Writer {
 		try {
 			prop.load(new FileInputStream("./conf/server.service.properties"));
 			services_fname = prop.getProperty("services.filename");
+			rules_fname = prop.getProperty("rules.filename");
 			activitys_fname = prop.getProperty("activitys.filename");
 			modes_fname = prop.getProperty("modes.filename");
 			backup_suffix = prop.getProperty("backup.suffix");
@@ -48,6 +50,7 @@ public class Writer {
 	public static void serialize() throws IOException {
 	serializeServices();
 	serializeActivitys();
+	serializeRules();
 	serializeModes();
 	}
 	
@@ -66,6 +69,21 @@ public class Writer {
 		JAXB.marshal(ServerS.serh, fservices);
 		System.out.print("Service serlialisees");
 		ServerS.serh.print();		
+	}
+
+	public static void serializeRules() {
+		File frules = new File(datarep_prefix + rules_fname);
+		// On cree une copie de sauvegarde des fichiers precedents en cas de probleme 
+		frules.renameTo(new File(backuprep_prefix + rules_fname+backup_suffix));
+		try {
+			frules.createNewFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		// Serialisation
+		JAXB.marshal(ServerS.rule, frules);
+		System.out.print("rule serlialisees");
+		ServerS.rule.print();		
 	}
 	public static void 	serializeActivitys() {
 		File factivitys = new File(datarep_prefix + activitys_fname);

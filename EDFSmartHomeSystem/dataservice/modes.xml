@@ -1,2 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<modes/>
+<modes>
+    <mode>
+        <id>Night</id>
+        <label>Night</label>
+        <activated>false</activated>
+    </mode>
+    <mode>
+        <id>Day</id>
+        <label>Day</label>
+        <activated>false</activated>
+    </mode>
+    <mode>
+        <id>Absence</id>
+        <label>Absence</label>
+        <activated>true</activated>
+    </mode>
+</modes>

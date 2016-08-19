@@ -25,7 +25,7 @@ public class User {
 	@XmlElement(name = "id")
 	private String id;
 	@XmlElement(name = "username")
-	private String username;
+	protected String username;
 	@XmlElement(name = "password")
 	private String password;
 

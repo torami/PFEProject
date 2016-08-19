@@ -16,7 +16,7 @@
             <etat>Ouverte</etat>
             <emplacement>Salon</emplacement>
         </opening>
-        <locked>false</locked>
+        <locked>True</locked>
     </space>
     <space>
         <id>sdb@sdb</id>

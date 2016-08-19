@@ -9,10 +9,9 @@ import java.util.Properties;
 
 import javax.xml.bind.DataBindingException;
 import javax.xml.bind.JAXB;
-
-import service.model.ModeOperator;
 import service.model.handlers.ActivityHandler;
 import service.model.handlers.ModeOperatorHandler;
+import service.model.handlers.RuleHandler;
 import service.model.handlers.ServiceHandler;
 import Context.exceptions.LoadFileException;
 import Context.exceptions.NoBackupFileException;
@@ -28,7 +27,7 @@ import Context.exceptions.NoBackupFileException;
 public class Loader {
 	private static String services_fname;
 	private static String modes_fname;
-
+	private static String rules_fname;
 	private static String activitys_fname;
 	private static String backup_suffix;
 	private static String datarep_prefix;
@@ -40,6 +39,7 @@ public class Loader {
 			prop.load(new FileInputStream("./conf/server.service.properties"));
 			services_fname = prop.getProperty("services.filename");
 			modes_fname = prop.getProperty("modes.filename");
+			rules_fname = prop.getProperty("rules.filename");
 			activitys_fname= prop.getProperty("activitys.filename");
 			backup_suffix = prop.getProperty("backup.suffix");
 			datarep_prefix = prop.getProperty("data.repository.prefix");
@@ -57,6 +57,7 @@ public class Loader {
 			loadservices();
 			loadactivitys();
 			loadmodes();
+			loadRules();
 
 
 		} catch (Exception e) {
@@ -91,6 +92,17 @@ public class Loader {
 		} catch (DataBindingException e) {
 			throw new LoadFileException(
 					"Erreur au chargement du fichier des utilisateurs");
+		}
+	}
+	public static void loadRules() throws LoadFileException {
+		try {
+			File frules = new File(datarep_prefix + rules_fname);
+			ServerS.rule =   JAXB.unmarshal(frules, RuleHandler.class);
+			System.out.print(frules.getAbsolutePath());
+			ServerS.rule.print();
+		} catch (DataBindingException e) {
+			throw new LoadFileException(
+					"Erreur au chargement du fichier des rules");
 		}
 	}
 	public static void loadmodes() throws LoadFileException {

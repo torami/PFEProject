@@ -34,7 +34,20 @@ public class NavResource {
 		TemplateEngine1.setSession(req.getSession());
 		return TemplateEngine1.buildFromFile("deletemode.html");
 	}
-	
+	@GET
+	@Produces("text/html")
+	@Path("/form/rule/add")
+	public String getRuleForm(@Context HttpServletRequest req) {
+		TemplateEngine1.setSession(req.getSession());
+		return TemplateEngine1.buildFromFile("addrule.html");
+	}
+	@GET
+	@Produces("text/html")
+	@Path("/form/mode/change")
+	public String getModeChangeForm(@Context HttpServletRequest req) {
+		TemplateEngine1.setSession(req.getSession());
+		return TemplateEngine1.buildFromFile("changemode.html");
+	}
 	@GET
 	@Path("/{filename}")
 	public String getFile(@PathParam("filename") String filename) {

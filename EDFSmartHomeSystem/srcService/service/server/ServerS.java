@@ -11,8 +11,10 @@ import java.util.Scanner;
 
 
 
+
 import service.model.handlers.ActivityHandler;
 import service.model.handlers.ModeOperatorHandler;
+import service.model.handlers.RuleHandler;
 import service.model.handlers.ServiceHandler;
 import Context.Model.User;
 import Context.Model.Handler.UserHandler;
@@ -34,6 +36,7 @@ public class ServerS {
 	static public ServiceHandler serh = new ServiceHandler();
 	static public ActivityHandler act = new ActivityHandler();
 	static public ModeOperatorHandler mode = new ModeOperatorHandler();
+	static public RuleHandler rule = new RuleHandler();
 
 
 
@@ -46,7 +49,7 @@ public class ServerS {
 		// renseigne le moteur de Jersey sur l'emplacement des classes a deployer
 		final Map<String, String> initParams = new HashMap<String, String>();
 		initParams.put("com.sun.jersey.config.property.packages", "service.resources"); 
- 
+
 
 		try {
 			// On deploie les ressource a baseURI et retourne un SelectorThread

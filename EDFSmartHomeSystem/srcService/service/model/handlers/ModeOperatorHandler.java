@@ -3,12 +3,10 @@ package service.model.handlers;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-
 import service.model.ModeOperator;
 import service.model.Rule;
 import service.model.Service;
@@ -69,6 +67,32 @@ public class ModeOperatorHandler {
 			if(u.getId().equals(modeid)) return u;
 		}
 		return null;
+	}
+	public void UpdateAllMode() {
+		for(ModeOperator u : modes){
+			if(u.isActivated() != false) {
+				u.setActivated(false);
+				Writer.serializeModes();
+
+			}
+		}
+	
+	}
+
+	/**
+	 * Mise à jour de mode par id.
+	 * @param mode ID du mode &agrave; mettre &agrave; jour
+	 * @param label nom du mode
+	 * @param active etat du mode
+	 * @param rule les règles qui forment le mode
+	 */
+	public void updateMode(final String modeid,final String modelabel,final boolean active,List<Rule> rule){
+		ModeOperator op = getModeFromId(modeid);
+		op.setId(modeid);
+		op.setLabel(modelabel);
+		op.setActivated(active);
+		op.setRules(rule);
+		Writer.serializeModes();
 	}
 	/**
 	 * Methode utilitaire pour afficher le nombre d'&eacute;l&eacute;ments contenus dans la liste.
