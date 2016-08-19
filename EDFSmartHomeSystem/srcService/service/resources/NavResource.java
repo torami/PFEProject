@@ -49,6 +49,13 @@ public class NavResource {
 		return TemplateEngine1.buildFromFile("changemode.html");
 	}
 	@GET
+	@Produces("text/html")
+	@Path("/form/mode/addrule")
+	public String getModeaddRuleForm(@Context HttpServletRequest req) {
+		TemplateEngine1.setSession(req.getSession());
+		return TemplateEngine1.buildFromFile("addruletomode.html");
+	}
+	@GET
 	@Path("/{filename}")
 	public String getFile(@PathParam("filename") String filename) {
 		return TemplateEngine1.getFile(filename);

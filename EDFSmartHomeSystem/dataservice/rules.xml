@@ -1,4 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <rules>
-
+	<rule>
+		<id>dev@salon</id>
+		<user>
+			<id>rami</id>
+			<username>dev</username>
+			<password>context</password>
+		</user>
+		<action>Open</action>
+		<space>
+			<id>Salon@Salon</id>
+			<name>Salon</name>
+			<opening />
+			<opening>
+				<id>Fenêtre@Salon</id>
+				<type>Fenêtre</type>
+				<etat>Ouvert</etat>
+				<emplacement>Salon</emplacement>
+			</opening>
+			<opening>
+				<id>Porte@Salon</id>
+				<type>Porte</type>
+				<etat>Ouverte</etat>
+				<emplacement>Salon</emplacement>
+			</opening>
+			<locked>True</locked>
+		</space>
+	</rule>
 </rules>

@@ -78,6 +78,16 @@ public class ModeOperatorHandler {
 		}
 	
 	}
+	/**
+	 * Add some rules to the mode
+	 */
+	public void UpdateModeByRule(final String modename, final Rule rule) {
+		ModeOperator mode= getModeFromId(modename);
+		List<Rule> l = mode.getRules();
+		l.add(0,rule );
+		mode.setRules(l);
+		Writer.serializeModes();	
+	}
 
 	/**
 	 * Mise à jour de mode par id.

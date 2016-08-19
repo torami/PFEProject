@@ -4,15 +4,16 @@
         <id>Night</id>
         <label>Night</label>
         <activated>false</activated>
+        
     </mode>
     <mode>
         <id>Day</id>
         <label>Day</label>
-        <activated>false</activated>
+        <activated>true</activated>
     </mode>
     <mode>
         <id>Absence</id>
         <label>Absence</label>
-        <activated>true</activated>
+        <activated>false</activated>
     </mode>
 </modes>
