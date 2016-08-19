@@ -7,9 +7,9 @@
         <emplacement>salon</emplacement>
     </connectedobject>
     <connectedobject>
-        <id>Salon@Sensor</id>
-        <type>Sensor</type>
-        <etat>O</etat>
-        <emplacement>Salon</emplacement>
+        <id>Cuisine@SuperJack</id>
+        <type>SuperJack</type>
+        <etat>Activated</etat>
+        <emplacement>Cuisine</emplacement>
     </connectedobject>
 </connectedobjects>

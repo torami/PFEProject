@@ -7,20 +7,20 @@
         <opening>
             <id>Fenêtre@Salon</id>
             <type>Fenêtre</type>
-            <etat>Ouvert</etat>
+            <etat>Opened</etat>
             <emplacement>Salon</emplacement>
         </opening>
         <opening>
             <id>Porte@Salon</id>
             <type>Porte</type>
-            <etat>Ouverte</etat>
+            <etat>Opened</etat>
             <emplacement>Salon</emplacement>
         </opening>
-        <locked>True</locked>
+        <locked>false</locked>
     </space>
     <space>
-        <id>sdb@sdb</id>
-        <name>sdb</name>
-        <locked>true</locked>
+        <id>Cuisine@Cuisine</id>
+        <name>Cuisine</name>
+        <locked>false</locked>
     </space>
 </spaces>
